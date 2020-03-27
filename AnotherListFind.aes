@@ -1,0 +1,37 @@
+include "List.aes"
+contract UseListFind=
+    record userInfo={
+        name:string,
+        phonnenumber:string,
+        userFriendAddress:address
+        }
+
+    record state={
+            allUsersFriend:map(address,list(userInfo))
+        }
+
+    
+    stateful entrypoint init()={allUsersFriend={}}
+
+    stateful entrypoint addFriend(name':string,phonnenumber':string,friendAddress:address)=
+        let allUsersFriend=Map.lookup_default(Call.caller,state.allUsersFriend,[])
+        let newUser={name=name',phonnenumber=phonnenumber',userFriendAddress=friendAddress}
+        let newAllUserFriends=newUser::allUsersFriend
+        put(state{allUsersFriend[Call.caller]=newAllUserFriends})
+
+    
+    entrypoint findCurrentUsersFriendByAddress(hisAddress:address)=
+         //access the list from the map
+        //get all the friends of the present user which is a list of userInfo
+        let allFriendsList=Map.lookup_default(Call.caller,state.allUsersFriend,[])
+
+        //access the item in the list
+        //pass a function that checks if the name on its parameter is equal to the one you are looking for
+        let presentUser=List.find((el)=>el.userFriendAddress==hisAddress,allFriendsList)
+        presentUser        
+
+    entrypoint findCurrentUsersFriendByName(hisName:string)=
+        let allFriendsList=Map.lookup_default(Call.caller,state.allUsersFriend,[])
+        //pass a function that checks if the userFriendAddress on its parameter is equal to the one you are looking for
+        let presentUser=List.find((el)=>el.name==hisName,allFriendsList)
+        presentUser 
