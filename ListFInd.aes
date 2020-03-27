@@ -1,0 +1,31 @@
+include "List.aes"
+contract ListFindImplementation=
+    record userInfo={
+        name:string,
+        number:string
+        }
+    record state={
+        allUsers:list(userInfo)
+        }
+
+    
+    stateful entrypoint init()={allUsers=[]}
+
+    stateful entrypoint addUser(name':string,number':string)=
+        let newUserInfo={name=name',number=number'}
+        let newListOfUsers=newUserInfo::state.allUsers
+        put(state{allUsers=newListOfUsers})
+
+    entrypoint getAllUsers()=
+        state.allUsers
+
+    entrypoint getUserByName(name:string)=   
+        //pass a function that checks if the name on its parameter is equal to the one you are looking for
+        let presentUser=List.find((el)=>el.name==name,state.allUsers)
+        presentUser   
+
+    entrypoint getUserByNumber(number:string)=   
+        //pass a function that checks if the name on its parameter is equal to the one you are looking for
+        let presentUser=List.find((el)=>el.number==number,state.allUsers)
+        presentUser   
+    
