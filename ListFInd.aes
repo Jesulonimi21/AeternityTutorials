@@ -25,7 +25,7 @@ contract ListFindImplementation=
         presentUser   
 
     entrypoint getUserByNumber(number:string)=   
-        //pass a function that checks if the name on its parameter is equal to the one you are looking for
+        //pass a function that checks if the number on its parameter is equal to the one you are looking for
         let presentUser=List.find((el)=>el.number==number,state.allUsers)
         presentUser   
     
