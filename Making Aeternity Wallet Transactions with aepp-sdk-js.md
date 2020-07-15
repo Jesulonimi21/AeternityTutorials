@@ -75,10 +75,21 @@ With the above done, we are set to start doing wonders with the aeternity javasc
  Voilà, we now know how to create a wallet on the Aeternity Blockchain.  Lets Quickly get into checking the bank account of this wallet.
  
  # Checking The Balance Of A Wallet
- 
+    To check an an aeternity wallet balance we need an instance of the sdk, so lets start by creating an sdk instance
  ```javascript
- 
- ```
+async function getClientInstance(secretKey,publicKey){
+    const NODE_URL = 'https://sdk-testnet.aepps.com';
+    const ACCOUNT = Ae.MemoryAccount({ keypair: { secretKey: secretKey, publicKey: publicKey } });
+    const nodeInstance = await Ae.Node({ url: NODE_URL })
+    const sdkInstance = await Ae.Universal({
+       compilerUrl: 'https://compiler.aepps.com',
+       nodes: [ { name: 'test-net', instance: nodeInstance } ],
+       accounts: [ ACCOUNT ]
+    });
+    return sdkInstance;
+}
+```
+To create an sdk instance, we need to specify a Node Url `NODE_URL` which states if to connect to the mainnet or the testnet, Connecting to the testnet is enough for this tutorial so we give it a value of https://sdk-testnet.aepps.com, then we create a memory account which uses the secret key and public key our function receives to do this. Then we further create our `nodeInstance` using the `NODE` constructor of the global Ae object
  
  
  
