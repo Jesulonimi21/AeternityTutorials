@@ -1,4 +1,4 @@
-# Tutorials How to make wallet transactions on the Web with aepp-sdk-js
+# TUTORIALS: How to make wallet transactions on the Web with aepp-sdk-js
 
 ## Tutorial Overview
 This tutorial is meant for web developers who want to begin to build interesting applications on the aeternity blockchain.
@@ -60,7 +60,7 @@ With the above done, we are set to start doing wonders with the aeternity javasc
  What we do above is pretty simple, the function above expects a private key as a string and then converts it to an ArrayBuffer using the `hexStringToByte` function in the crypto module of the aepp-sdk-js. We further access the `generateKeyPairFromSecret` function in the crypto module of the aeternity javascript SDK, this function then returns a KeyPair object containing both the secret key and private key as an ArrayBuffer of view UInt8Array. The next step is to retrieve the private key and public key from their respective ArrayBuffers, we do this using the `aencodeKey` function of the `Crypto` module and the `from` method of the Buffer module to get the private key and public Key as strings. So now that you know how to get a public key from an existing private key. let's go over creating a KeyPair from a brand new public key and private key.
  
  ## New KeyPair Creation Without Existing Public Key
- ```javascript
+```javascript
  function generateKeyPairWithoutSecretKey(){
     let { secretKey, publicKey } = Ae.Crypto.generateKeyPair(true);
     console.log(secretKey);
@@ -69,12 +69,12 @@ With the above done, we are set to start doing wonders with the aeternity javasc
     let translatedSecretKey=buffer.Buffer.from(secretKey).toString('hex');
     return {publicKey:translatedPublicKey,privateKey:translatedSecretKey};
 }
- ```
+```
  The function above simply creates a brand new KeyPair, we do this by accessing the `generateKeyPair` method of the  `Crypto` module of the aepp-sdk-js. Then we repeat the same steps we did earlier to get the string version of our secret key and public key.
  Voilà, we now know how to create a wallet on the Aeternity Blockchain.  Lets Quickly get into checking the bank account of this wallet.
  
- # Checking The Balance Of A Wallet
-    To check an an aeternity wallet balance we need an instance of the sdk, so lets start by creating an sdk instance
+# Checking The Balance Of A Wallet
+To check a an aeternity wallet balance we need an instance of the sdk, so lets start by creating an sdk instance
  ```javascript
 async function getClientInstance(secretKey,publicKey){
     const NODE_URL = 'https://sdk-testnet.aepps.com';
@@ -91,7 +91,7 @@ async function getClientInstance(secretKey,publicKey){
 To create an SDK instance, we need to specify a Node Url `NODE_URL` which states if to connect to the mainnet or the testnet, Connecting to the testnet is enough for this tutorial so we give it a value of https://sdk-testnet.aepps.com, then we create a memory account which uses the secret key and public key our function receives to do this. Then we further create our `nodeInstance` using the `NODE` constructor of the global Ae object. Lastly, we create an SDK instance using the `Universal` constructor on the global `Ae` object and return it. Let's proceed by finally adding the function that will allow us to check our Aeternity wallet account balance.
 
 ```javascript
-    async function getAccountBalance(publicKey,sdkInstance){
+  async function getAccountBalance(publicKey,sdkInstance){
     let height=await sdkInstance.height();
     try{
         let balance=await sdkInstance.balance(publicKey,{height:+height,hash:null});
