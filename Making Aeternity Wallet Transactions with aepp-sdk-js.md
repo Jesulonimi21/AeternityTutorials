@@ -71,9 +71,14 @@ With the above done, we are set to start doing wonders with the aeternity javasc
     return {publicKey:translatedPublicKey,privateKey:translatedSecretKey};
 }
  ```
- The function abpve simply creates a brand new KeyPair, we do this by accessing the `generateKeyPair` method of the  `Crypto` module of the aepp-js-sdk. Then we repeat the same steps we did earlier to get the string version of our secret key and public key.
+ The function above simply creates a brand new KeyPair, we do this by accessing the `generateKeyPair` method of the  `Crypto` module of the aepp-js-sdk. Then we repeat the same steps we did earlier to get the string version of our secret key and public key.
  Voilà, we now know how to create a wallet on the Aeternity Blockchain.  Lets Quickly get into checking the bank account of this wallet.
  
+ # Checking The Balance Of A Wallet
+ 
+ ```javascript
+ 
+ ```
  
  
  
