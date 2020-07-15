@@ -1,18 +1,18 @@
 # Tutorials How to make wallet transactions on the Web with aepp-sdk-js
 
 ## Tutorial Overview
-This tutorial is mend for web developers who want to begin to build interesting applications on the aeternity blockchain.
+This tutorial is meant for web developers who want to begin to build interesting applications on the aeternity blockchain.
 In this tutorial we will cover the following:
 - Wallet Creation
 - Checking Wallet Balance
 - Token transfer
 
 ## Prerequisites
-- A familiarity with the javascript programming language
+- Familiarity with the javascript programming language
 - Basic understanding of some blockchain terminologies
 
 ## Setup And Configuration
-Create a new folder and create an index.html file in it then include the cdn link for the javascript sdk, i will be using version 7.3.1 of the aeternity javascript sdk in this tutorial, also add a link to the Node.js Buffer for web cdn like it is done below
+Create a new folder and create an index.html file in it then include the CDN link for the javascript SDK, I will be using version 7.3.1 of the aeternity javascript SDK in this tutorial, also add a link to the Node.js Buffer for web CDN like it is done below
 
 ```html
 <html>
@@ -40,11 +40,11 @@ full head of the index.html file
     </body>
 </html>
 ```
-With the above done, we are set to start doing wonders with the aeternity javascript sdk
+With the above done, we are set to start doing wonders with the aeternity javascript SDK
  # Wallet creation
- Creating an Aeternity wallet with the javascript sdk is extremely simple since we only need one module from the sdk to do this, which is the `Crypto` module,to have access to a wallet, we need to create a KeyPair(An object containing a private Key and a public key). We will go over two ways to create this and they are:
+ Creating an Aeternity wallet with the javascript SDK is extremely simple since we only need one module from the SDK to do this, which is the `Crypto` module, to have access to a wallet, we need to create a KeyPair(An object containing a private key and a public key). We will go over two ways to create this and they are:
  - KeyPair creation with an existing private key
- - New KeyPair cereation without a private key
+ - New KeyPair creation without a private key
  
  ## KeyPair Creation with an existing private key
  Lets see how this is done, write the following code in the `index.js` file created earlier:
@@ -57,7 +57,7 @@ With the above done, we are set to start doing wonders with the aeternity javasc
       return{publicKey:publicKey,privateKey:secretKey};
     }
  ```
- What we do above is pretty simple, the function above expects a private key as a string and then converts it to an ArrayBuffer using the `hexStringToByte` function in the crypto module of the aepp-js-sdk. We further access  the `generateKeyPairFromSecret` function in the crypto module of the aeternity javascript sdk, this function then returns a KeyPair object containing both the secret key and private key as an ArrayBuffer of view UInt8Array. The next step is to retrieve the private key and public key from their respective ArrayBuffers, we do this using the `aencodeKey` function of the `Crypto` module and the `from` method of the Buffer module to get the private key and public Key as strings. So now that you know how to get a public Key from an existing private key. lets go over creating a KeyPair from a brand new public key and private key.
+ What we do above is pretty simple, the function above expects a private key as a string and then converts it to an ArrayBuffer using the `hexStringToByte` function in the crypto module of the aepp-sdk-js. We further access the `generateKeyPairFromSecret` function in the crypto module of the aeternity javascript SDK, this function then returns a KeyPair object containing both the secret key and private key as an ArrayBuffer of view UInt8Array. The next step is to retrieve the private key and public key from their respective ArrayBuffers, we do this using the `aencodeKey` function of the `Crypto` module and the `from` method of the Buffer module to get the private key and public Key as strings. So now that you know how to get a public key from an existing private key. let's go over creating a KeyPair from a brand new public key and private key.
  
  ## New KeyPair Creation Without Existing Public Key
  ```javascript
@@ -70,7 +70,7 @@ With the above done, we are set to start doing wonders with the aeternity javasc
     return {publicKey:translatedPublicKey,privateKey:translatedSecretKey};
 }
  ```
- The function above simply creates a brand new KeyPair, we do this by accessing the `generateKeyPair` method of the  `Crypto` module of the aepp-js-sdk. Then we repeat the same steps we did earlier to get the string version of our secret key and public key.
+ The function above simply creates a brand new KeyPair, we do this by accessing the `generateKeyPair` method of the  `Crypto` module of the aepp-sdk-js. Then we repeat the same steps we did earlier to get the string version of our secret key and public key.
  Voilà, we now know how to create a wallet on the Aeternity Blockchain.  Lets Quickly get into checking the bank account of this wallet.
  
  # Checking The Balance Of A Wallet
@@ -88,7 +88,7 @@ async function getClientInstance(secretKey,publicKey){
     return sdkInstance;
 }
 ```
-To create an sdk instance, we need to specify a Node Url `NODE_URL` which states if to connect to the mainnet or the testnet, Connecting to the testnet is enough for this tutorial so we give it a value of https://sdk-testnet.aepps.com, then we create a memory account which uses the secret key and public key our function receives to do this. Then we further create our `nodeInstance` using the `NODE` constructor of the global Ae object. Lastly we create an sdk instance using the `Universal` constructor on the global `Ae` object and return it. Lets proceed by finally adding the function that will allow us check our Aeternity wallet account balance.
+To create an SDK instance, we need to specify a Node Url `NODE_URL` which states if to connect to the mainnet or the testnet, Connecting to the testnet is enough for this tutorial so we give it a value of https://sdk-testnet.aepps.com, then we create a memory account which uses the secret key and public key our function receives to do this. Then we further create our `nodeInstance` using the `NODE` constructor of the global Ae object. Lastly, we create an SDK instance using the `Universal` constructor on the global `Ae` object and return it. Let's proceed by finally adding the function that will allow us to check our Aeternity wallet account balance.
 
 ```javascript
     async function getAccountBalance(publicKey,sdkInstance){
@@ -104,11 +104,11 @@ To create an sdk instance, we need to specify a Node Url `NODE_URL` which states
      }   
 }
 ```
-What we do in the function above is quite simple, we get the height using the sdkInstance, we use the `balance` function on the `sdkInstance` to get the total balance .Then we return it. Note the use of try and catch block because if the amount in that account is 0 aettos, it will return an error so we simply return 0 and log the error.
+What we do in the function above is quite simple, we get the height using the sdkInstance, we use the `balance` function on the `sdkInstance` to get the total balance. Then we return it. Note the use of try and catch block because if the amount in that account is 0 aettos, it will return an error so we simply return 0 and log the error.
 
 
 #Token Transfer
-Lastly we will create a function called `sendAeToAccount`, it will receive an sdkInstance, a public address to which we want to send tokens and the amount which we want to send.
+Lastly, we will create a function called `sendAeToAccount`, it will receive an sdkInstance, a public address to which we want to send tokens and the amount which we want to send.
 ```javascript
 async function sendAeToAccount(publicAddress,amount,sdkInstance){
    
@@ -118,11 +118,11 @@ async function sendAeToAccount(publicAddress,amount,sdkInstance){
    return returnValue.hash;
 }
 ```
-All we do in the function above is just one line of code we access the `spend` function on the  sdkInstance and then pass the `amount`, `publicAddress` and  `denomination` we want to use and thats all we need to so to perform a spend transaction. Finally we return the hash.
+All we do in the function above is just one line of code we access the `spend` function on the sdkInstance and then pass the `amount`, `publicAddress` and  `denomination` we want to use and that's all we need to so to perform a spend transaction. Finally, we return the hash.
 
 
 # Things To Note
- -The aeternity javascript sdk of version 7.3.1 was used in this tutorial
+ -The aeternity javascript SDK of version 7.3.1 was used in this tutorial
  -You can find a showcase of all that was taught here https://jesulonimi21.github.io/Aeternity-Web-Wallet-ShowCase/. and access the source code here https://github.com/Jesulonimi21/Aeternity-Web-Wallet-ShowCase.
  
     
