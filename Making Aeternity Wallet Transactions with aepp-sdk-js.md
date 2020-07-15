@@ -6,7 +6,6 @@ In this tutorial we will cover the following:
 - Wallet Creation
 - Checking Wallet Balance
 - Token transfer
-- Connecting to a Smart Contract Instance
 
 ## Prerequisites
 - A familiarity with the javascript programming language
@@ -107,6 +106,28 @@ To create an sdk instance, we need to specify a Node Url `NODE_URL` which states
 ```
 What we do in the function above is quite simple, we get the height using the sdkInstance, we use the `balance` function on the `sdkInstance` to get the total balance .Then we return it. Note the use of try and catch block because if the amount in that account is 0 aettos, it will return an error so we simply return 0 and log the error.
 
+
+#Token Transfer
+Lastly we will create a function called `sendAeToAccount`, it will receive an sdkInstance, a public address to which we want to send tokens and the amount which we want to send.
+```javascript
+async function sendAeToAccount(publicAddress,amount,sdkInstance){
+   
+  let returnValue=await sdkInstance.spend(amount, publicAddress, { denomination: 'ae' });
+  console.log(returnValue);
+  console.log(returnValue.hash);
+   return returnValue.hash;
+}
+```
+All we do in the function above is just one line of code we access the `spend` function on the  sdkInstance and then pass the `amount`, `publicAddress` and  `denomination` we want to use and thats all we need to so to perform a spend transaction. Finally we return the hash.
+
+
+# Things To Note
+ -The aeternity javascript sdk of version 7.3.1 was used in this tutorial
+ -You can find a showcase of all that was taught here https://jesulonimi21.github.io/Aeternity-Web-Wallet-ShowCase/. and access the source code here https://github.com/Jesulonimi21/Aeternity-Web-Wallet-ShowCase.
+ 
+    
+ 
+ 
 
 
 
