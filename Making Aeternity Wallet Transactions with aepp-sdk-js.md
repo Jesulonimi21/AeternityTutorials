@@ -89,7 +89,29 @@ async function getClientInstance(secretKey,publicKey){
     return sdkInstance;
 }
 ```
-To create an sdk instance, we need to specify a Node Url `NODE_URL` which states if to connect to the mainnet or the testnet, Connecting to the testnet is enough for this tutorial so we give it a value of https://sdk-testnet.aepps.com, then we create a memory account which uses the secret key and public key our function receives to do this. Then we further create our `nodeInstance` using the `NODE` constructor of the global Ae object
+To create an sdk instance, we need to specify a Node Url `NODE_URL` which states if to connect to the mainnet or the testnet, Connecting to the testnet is enough for this tutorial so we give it a value of https://sdk-testnet.aepps.com, then we create a memory account which uses the secret key and public key our function receives to do this. Then we further create our `nodeInstance` using the `NODE` constructor of the global Ae object. Lastly we create an sdk instance using the `Universal` constructor on the global `Ae` object and return it. Lets proceed by finally adding the function that will allow us check our Aeternity wallet account balance.
+
+```javascript
+    async function getAccountBalance(publicKey,sdkInstance){
+    let height=await sdkInstance.height();
+    try{
+        let balance=await sdkInstance.balance(publicKey,{height:+height,hash:null});
+        console.log(balance);
+        balance=parseFloat(balance)/1000000000000000000;
+        return balance.toFixed(2)+ 'aettos';
+    }catch(err){
+         console.error(err);
+         return 0;
+     }   
+}
+```
+What we do in the function above is quite simple, we get the height using the sdkInstance, we use the `balance` function on the `sdkInstance` to get the total balance .Then we return it. Note the use of try and catch block because if the amount in that account is 0 aettos, it will return an error so we simply return 0 and log the error.
+
+
+
+
+
+
  
  
  
