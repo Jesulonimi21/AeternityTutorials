@@ -76,7 +76,7 @@ With the above done, we are set to start doing wonders with the aeternity javasc
 ## Checking The Balance Of A Wallet
 To check a an aeternity wallet balance we need an instance of the sdk, so lets start by creating an sdk instance
  ```javascript
-async function getClientInstance(secretKey,publicKey){
+async function getSdkInstance(secretKey,publicKey){
     const NODE_URL = 'https://sdk-testnet.aepps.com';
     const ACCOUNT = Ae.MemoryAccount({ keypair: { secretKey: secretKey, publicKey: publicKey } });
     const nodeInstance = await Ae.Node({ url: NODE_URL })
@@ -120,12 +120,11 @@ async function sendAeToAccount(publicAddress,amount,sdkInstance){
 ```
 All we do in the function above is just one line of code we access the `spend` function on the sdkInstance and then pass the `amount`, `publicAddress` and  `denomination` we want to use and that's all we need to so to perform a spend transaction. Finally, we return the hash.
 
-## Full Code
     
 
 ## Things To Note
  - The aeternity javascript SDK of version 7.3.1 was used in this tutorial
- - You can find a showcase of all that was taught [here](https://jesulonimi21.github.io/Aeternity-Web-Wallet-ShowCase/). and access the source code [here](https://github.com/Jesulonimi21/Aeternity-Web-Wallet-ShowCase).
+ - You can find a showcase of all that was taught [here](https://jesulonimi21.github.io/Aeternity-Web-Wallet-ShowCase/). and access the source code [here](https://github.com/Jesulonimi21/Aeternity-Web-Wallet-ShowCase). The show case also shows how to connect your created wallet to a smart contract
  
 ## Conclusion
   If you have any problem, please make sure to post it on the [Aeternity Dev Forum](https://forum.aeternity.com/c/development)
