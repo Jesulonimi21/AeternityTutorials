@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div  class="accountCard">
+        <div id='bobLoader' class="spinner"></div>
+        <div class="nameContainer">
+            <div class="imagePlaceHolder"><h4 class="firstLetter">B</h4></div>
+            <h4 class="name">Bob</h4>
+       </div>
+ 
+        <div class="publicKeyContainer">
+            <h4>Public Key:</h4>
+            <h4 class="publicKey" id="bobPublicKey"></h4>
+        </div>
+
+        <div  class="publicKeyContainer">
+            <h4>Secret Key:</h4>
+            <h4  class="publicKey" id="bobPrivateKey"></h4>
+        </div>
+        <div  class="publicKeyContainer">
+            <h4>Balance:</h4>
+            <h4  class="publicKey" id="bobBalance">Unknown For Now</h4>
+        </div>
+
+        <div class="formContainer">
+            <input class="inputStyle" id="bobSendPublickey" placeholder="Enter Public address">
+            <input class="inputStyle" id="bobSendAmount" placeholder="Enter amount" type="number">
+
+            <button class="buttonStyle" id="bobSendButton">Send</button>
+        </div>
+    </div>
+       
+
+    <script src="https://unpkg.com/@aeternity/aepp-sdk@7.3.1/dist/aepp-sdk.browser-script.js"></script>
+    <script src="https://bundle.run/buffer@5.6.0"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
