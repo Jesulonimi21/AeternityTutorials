@@ -97,7 +97,7 @@ To create an SDK instance, we need to specify a Node Url `NODE_URL` which states
         let balance=await sdkInstance.balance(publicKey,{height:+height,hash:null});
         console.log(balance);
         balance=parseFloat(balance)/1000000000000000000;
-        return balance.toFixed(2)+ 'aettos';
+        return balance.toFixed(2)+ 'AE tokens';
     }catch(err){
          console.error(err);
          return 0;
