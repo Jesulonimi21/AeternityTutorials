@@ -124,7 +124,9 @@ All we do in the function above is just one line of code we access the `spend` f
 
 ## Things To Note
  - The aeternity javascript SDK of version 7.3.1 was used in this tutorial
- - You can find a showcase of all that was taught [here](https://jesulonimi21.github.io/Aeternity-Web-Wallet-ShowCase/). and access the source code [here](https://github.com/Jesulonimi21/Aeternity-Web-Wallet-ShowCase). The show case also shows how to connect your created wallet to a smart contract
+ - You can find the source code of all that was taught [here](https://github.com/Jesulonimi21/AeWebWalletTutorial/blob/master/MakingWalletTransactionsOnTheWebTutorial/finish/). 
+ - You can find a video that explains clearly all that was taught [here](https://www.youtube.com/watch?v=AztwYKJpCK4&feature=youtu.be)
+ - There is also a showcase that can be found [here](https://jesulonimi21.github.io/Aeternity-Web-Wallet-ShowCase/), it explains the above in cluding how to connect to a smart contract, you can find th source code [here](https://github.com/Jesulonimi21/Aeternity-Web-Wallet-ShowCase)
  
 ## Conclusion
   If you have any problem, please make sure to post it on the [Aeternity Dev Forum](https://forum.aeternity.com/c/development)
